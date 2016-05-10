@@ -1,0 +1,11 @@
+{
+  "retainLines": true,
+  "compact": true,
+  "comments": false,
+  "plugins": [
+  ],
+  "sourceMaps": false,
+  "presets": [
+    "react-native"
+  ]
+}
