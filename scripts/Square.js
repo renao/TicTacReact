@@ -1,10 +1,12 @@
-import React, {
+
+import React, { Component } from 'react';
+import {
   StyleSheet,
   View,
   Text,
 } from 'react-native';
 
-export default class Square extends React.Component {
+export default class Square extends Component {
 
   constructor(props) {
     super(props);
