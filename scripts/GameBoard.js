@@ -4,7 +4,7 @@ import React, {
   Text,
 } from 'react-native';
 
-import Square from './Square'
+import Row from './GameBoard/Row'
 
 export default class GameBoard extends React.Component {
 
@@ -12,20 +12,21 @@ export default class GameBoard extends React.Component {
     super(props);
     this.cols = 3;
     this.rows = 3;
+
     var squareFields = [];
     for (row = 1; row <= this.rows; row += 1) {
-      squareFields[row] = [];
-      for (col = 1; col <= this.cols; col += 1) {
-        squareFields[row][col] = <Square key={row + ' ' + col} column={col} row={row} />;
-      }
+      squareFields[row] = <Row key={row} rowNumber={row} columns={this.cols} />;
     }
-    this.squareFields = squareFields;
+
+    this.state = {
+      squareFields: squareFields
+    };
   }
 
   render() {
     return (
       <View style={styles.gameBoard}>
-        {this.squareFields}
+        {this.state.squareFields}
       </View>
     );
   }
@@ -36,7 +37,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#ccc'
+    alignItems: 'stretch',
+    backgroundColor: '#111'
   },
 });

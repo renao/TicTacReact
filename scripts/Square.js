@@ -16,7 +16,7 @@ export default class Square extends React.Component {
   render() {
     return (
       <View style={styles.square}>
-        <Text>{this.column} {this.row}</Text>
+        <Text style={styles.squareLabel}>{this.row} {this.column}</Text>
       </View>
     );
   }
@@ -27,7 +27,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'space-around',
-    alignItems: 'center',
-    backgroundColor: '#f00',
+    margin: 2,
+    backgroundColor: 'rgba(255,255,255,0.12)',
   },
+  squareLabel: {
+    fontSize: 80,
+    color: '#aaa'
+  }
 });
