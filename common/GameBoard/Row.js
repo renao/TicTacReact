@@ -9,7 +9,7 @@ export default class Row extends Component {
     super(props);
     this.squares = [];
     for (let col = 1; col <= props.columns; col += 1) {
-      this.squares[col - 1] = <Square key={col + ' ' + props.row} column={col} row={props.row} />;
+      this.squares[col - 1] = <Square key={col + ' ' + props.row} column={col} row={props.row} onGameMoveHandle={props.onGameMoveHandle} />;
     }
   }
 

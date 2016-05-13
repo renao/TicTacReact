@@ -11,10 +11,9 @@ export default class GameBoard extends Component {
 
   constructor(props) {
     super(props);
-
-    var field = [];
+    let field = [];
     for (row = 1; row <= props.rows; row += 1) {
-      field[row - 1] = <Row key={row} row={row} columns={props.columns} />;
+      field[row - 1] = <Row key={row} row={row} columns={props.columns} onGameMoveHandle={this._handleGameMove.bind(this)} />;
     }
 
     this.state = {
@@ -28,6 +27,10 @@ export default class GameBoard extends Component {
         {this.state.field}
       </View>
     );
+  }
+
+  _handleGameMove(rowId, columnId) {
+    alert("Occupy [ " + columnId + " | " + rowId + " ]");
   }
 }
 
