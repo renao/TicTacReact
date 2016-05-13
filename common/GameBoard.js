@@ -1,4 +1,5 @@
-import React, {
+import React, { Component } from 'react';
+import {
   StyleSheet,
   View,
   Text,
@@ -6,27 +7,25 @@ import React, {
 
 import Row from './GameBoard/Row'
 
-export default class GameBoard extends React.Component {
+export default class GameBoard extends Component {
 
   constructor(props) {
     super(props);
-    this.cols = 3;
-    this.rows = 3;
 
-    var squareFields = [];
-    for (row = 1; row <= this.rows; row += 1) {
-      squareFields[row] = <Row key={row} rowNumber={row} columns={this.cols} />;
+    var field = [];
+    for (row = 1; row <= props.rows; row += 1) {
+      field[row - 1] = <Row key={row} row={row} columns={props.columns} />;
     }
 
     this.state = {
-      squareFields: squareFields
+      field: field
     };
   }
 
   render() {
     return (
       <View style={styles.gameBoard}>
-        {this.state.squareFields}
+        {this.state.field}
       </View>
     );
   }

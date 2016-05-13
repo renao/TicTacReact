@@ -1,16 +1,11 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
-
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
 
-import GameBoard from './scripts/GameBoard';
+import GameBoard from './common/GameBoard';
 
 export default class TicTacReact extends Component {
   render() {
-    return ( <GameBoard /> );
+    return ( <GameBoard rows={3} columns={3} /> );
   }
 }
 
