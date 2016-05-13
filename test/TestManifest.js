@@ -1,1 +1,2 @@
-require('./scripts/GameBoardTest');
+require('./common/GameBoardTest');
+require('./common/GameBoard/RowTest');
