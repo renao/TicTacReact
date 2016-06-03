@@ -1,6 +1,6 @@
 import GameFieldOccupation from './GameFieldOccupation';
 
-class Game {
+export default class Game {
   
   get currentFieldState() {
     return this.occupation;
