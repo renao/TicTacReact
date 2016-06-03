@@ -31,8 +31,7 @@ export default class GameBoard extends Component {
   }
 
   _handleGameMove(rowId, columnId) {
-    // this.props.store.dispatch(() => { action: 'OCCUPY_FIELD', rowId: rowId, columnId: columnId });
-    alert("Occupy [ " + columnId + " | " + rowId + " ]");
+    this.props.store.dispatch({ type: 'OCCUPY_FIELD', rowId: rowId, columnId: columnId });
   }
 }
 

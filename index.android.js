@@ -2,28 +2,27 @@ import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
 
 import GameBoard from './common/GameBoard';
+import { createStore, combineReducers } from 'redux';
+import Game from './game/Game';
 
-import { createStore } from 'redux';
-
-import { Game } from './game/Game';
-
-
-let currentGame = undefined;
-
-function noopReducer(state=[], action) {
-  if (action == 'OCCUPY_FIELD') {
-    currentGame.occupyField(action.columnId, action.rowId);
-  }
+function occupyField(state, action) {
+  alert("Current state => " + state);
+  state.occupyField(action.columnId, action.rowId);
+  // alert("Occupy [ " + action.columnId + " | " + action.rowId + " ]");
   return state;
 }
 
-function createGame() {
-  store = createStore(noopReducer, new Game());
-
+const actionMap = {
+  'OCCUPY_FIELD': occupyField,
 }
 
+function reducer(state = new Game(), action) {
+  const fn = actionMap[action.type];
+  if(fn) return fn(state, action);
+  return state;
+}
 
-let store = createStore(noopReducer);
+const store = createStore(combineReducers({game: reducer}));
 
 export default class TicTacReact extends Component {
   render() {
