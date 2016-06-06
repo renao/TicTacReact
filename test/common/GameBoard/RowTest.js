@@ -32,7 +32,7 @@ describe('<Row />', () => {
     expect(React.Children.count(squares)).to.equal(squareCount);
 
     React.Children.forEach(squares, (square, index) => {
-      let colId = index + 1;
+      let colId = index;
       expect(square.key).to.equal(colId + ' ' + rowId);
       expect(square.props.row).to.equal(rowId);
       expect(square.props.column).to.equal(colId);
