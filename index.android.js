@@ -1,34 +1,40 @@
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
 
+import devTools from 'remote-redux-devtools';
+
 import GameBoard from './common/GameBoard';
+import { createStore, combineReducers } from 'redux';
+import { createGameField } from './game/setup/GameInstantiator';
 
-import { createStore } from 'redux';
-
-import { Game } from './game/Game';
-
-
-let currentGame = undefined;
-
-function noopReducer(state=[], action) {
-  if (action == 'OCCUPY_FIELD') {
-    currentGame.occupyField(action.columnId, action.rowId);
-  }
+function occupyField(state, action) {
+  state[action.columnId][action.rowId] = "ASD";
+  // TODO: Occupy field
+  // TODO: validate state
   return state;
 }
 
-function createGame() {
-  store = createStore(noopReducer, new Game());
-
+const actionMap = {
+  'OCCUPY_FIELD': occupyField,
 }
 
+const gameFieldRows = 3;
+const gameFieldColumns = 3;
 
-let store = createStore(noopReducer);
+function reducer(state = createGameField(gameFieldColumns, gameFieldRows), action) {
+  const fn = actionMap[action.type];
+  if(fn) return fn(state, action);
+  return state;
+}
 
 export default class TicTacReact extends Component {
   render() {
-    return ( <GameBoard store={store} rows={3} columns={3} /> );
+    return ( <GameBoard
+               store={createStore(combineReducers({field: reducer}), devTools())}
+               rows={gameFieldRows}
+               columns={gameFieldColumns}
+             />)
   }
 }
 
-AppRegistry.registerComponent('TicTacReact', () => TicTacReact);
+AppRegistry.registerComponent('TicTacReact', () => TicTacReact)

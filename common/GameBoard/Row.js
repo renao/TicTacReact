@@ -8,8 +8,13 @@ export default class Row extends Component {
   constructor(props) {
     super(props);
     this.squares = [];
-    for (let col = 1; col <= props.columns; col += 1) {
-      this.squares[col - 1] = <Square key={col + ' ' + props.row} column={col} row={props.row} onGameMoveHandle={props.onGameMoveHandle} />;
+    for (let col = 0; col < props.columns; col += 1) {
+      this.squares[col] = <Square
+                            key={col + ' ' + props.row}
+                            column={col}
+                            row={props.row}
+                            onGameMoveHandle={props.onGameMoveHandle}
+                          />;
     }
   }
 

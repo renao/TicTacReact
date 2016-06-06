@@ -11,28 +11,30 @@ export default class GameBoard extends Component {
 
   constructor(props) {
     super(props);
-    let field = [];
+    // props.store.subscribe(() => this.render());
 
-    for (row = 1; row <= props.rows; row += 1) {
-      field[row - 1] = <Row key={row} row={row} columns={props.columns} onGameMoveHandle={this._handleGameMove.bind(this)} />;
+    this.fieldRows = [];
+
+    for (let row = 0; row < props.rows; row += 1) {
+      this.fieldRows[row] = <Row 
+                              key={row}
+                              row={row}
+                              columns={props.columns}
+                              onGameMoveHandle={this._handleGameMove.bind(this)}
+                            />;
     }
-
-    this.state = {
-      field: field
-    };
   }
 
   render() {
     return (
       <View style={styles.gameBoard}>
-        {this.state.field}
+        {this.fieldRows}
       </View>
     );
   }
 
   _handleGameMove(rowId, columnId) {
-    // this.props.store.dispatch(() => { action: 'OCCUPY_FIELD', rowId: rowId, columnId: columnId });
-    alert("Occupy [ " + columnId + " | " + rowId + " ]");
+    this.props.store.dispatch({ type: 'OCCUPY_FIELD', rowId: rowId, columnId: columnId });
   }
 }
 
