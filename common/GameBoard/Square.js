@@ -9,8 +9,8 @@ export default class Square extends Component {
 
   render() {
     return (
-      <TouchableOpacity style={styles.empty} onPress={ () => this.props.onGameMoveHandle(this.props.row, this.props.column)}>
-        <Text style={styles.squareLabel}></Text>
+      <TouchableOpacity style={styles.empty} onPress={ () => this.props.onGameMoveHandle(this.props.column, this.props.row)}>
+        <Text style={styles.squareLabel}>SquareLabel</Text>
       </TouchableOpacity>
     );
   }
