@@ -24,6 +24,7 @@
     "react-native-mock": "^0.0.6",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
+    "redux-mock-store": "^1.1.0",
     "remote-redux-devtools": "^0.3.3",
     "shebang-regex": "^1.0.0",
     "slash": "^1.0.0"

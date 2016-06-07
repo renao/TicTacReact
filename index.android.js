@@ -21,7 +21,7 @@ const actionMap = {
 const gameFieldRows = 3;
 const gameFieldColumns = 3;
 
-function reducer(state = createGameField(gameFieldColumns, gameFieldRows), action) {
+function reducer(state = createGameField(gameFieldRows, gameFieldColumns), action) {
   const fn = actionMap[action.type];
   if(fn) return fn(state, action);
   return state;
@@ -31,8 +31,6 @@ export default class TicTacReact extends Component {
   render() {
     return ( <GameBoard
                store={createStore(combineReducers({field: reducer}), devTools())}
-               rows={gameFieldRows}
-               columns={gameFieldColumns}
              />)
   }
 }
