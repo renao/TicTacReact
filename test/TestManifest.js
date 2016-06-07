@@ -1,4 +1,4 @@
 require('./common/GameBoardTest');
-require('./common/GameBoard/RowTest');
+require('./common/GameBoard/ColumnTest');
 
 require('./game/PlayerTest');

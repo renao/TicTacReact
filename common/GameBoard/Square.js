@@ -7,10 +7,18 @@ export default class Square extends Component {
     super(props);
   }
 
+  update() {
+
+  }
+
+  determineStyle() {
+    return (this.props.row == 0) ? styles.playerA : styles.playerB;
+  }
+
   render() {
     return (
-      <TouchableOpacity style={styles.empty} onPress={ () => this.props.onGameMoveHandle(this.props.column, this.props.row)}>
-        <Text style={styles.squareLabel}>SquareLabel</Text>
+      <TouchableOpacity style={ this.determineStyle() } onPress={ () => this.props.onGameMoveHandle(this.props.column, this.props.row) }>
+        <Text style={styles.label}>SquareLabel</Text>
       </TouchableOpacity>
     );
   }
@@ -25,9 +33,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.12)',
   },
   playerA: {
-    backgroundColor: 'blue'
+    backgroundColor: 'purple',
   },
   playerB: {
-    backgroundColor: 'yellow'
+    backgroundColor: 'orange',
+  },
+  label: {
+    textAlign: 'center',
+    fontSize: 50,
+    color: 'green'
   }
 });

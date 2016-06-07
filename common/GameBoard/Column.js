@@ -3,16 +3,16 @@ import { StyleSheet, View } from 'react-native';
 
 import Square from './Square'
 
-export default class Row extends Component {
+export default class Column extends Component {
 
   constructor(props) {
     super(props);
     this.squares = [];
-    for (let col = 0; col < props.columns; col += 1) {
-      this.squares[col] = <Square
-                            key={col + ' ' + props.row}
-                            column={col}
-                            row={props.row}
+    for (let row = 0; row < props.rows; row += 1) {
+      this.squares[row] = <Square
+                            key={props.column + ' ' + row}
+                            column={props.column}
+                            row={row}
                             onGameMoveHandle={props.onGameMoveHandle}
                           />;
     }
