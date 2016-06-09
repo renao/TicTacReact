@@ -6,6 +6,7 @@ import devTools from 'remote-redux-devtools';
 import GameBoard from './common/GameBoard';
 import { createStore, combineReducers } from 'redux';
 import { createGameField } from './game/setup/GameInstantiator';
+import { Provider } from 'react-redux';
 
 function occupyField(state, action) {
   state[action.columnId][action.rowId] = "ASD";
@@ -29,9 +30,13 @@ function reducer(state = createGameField(gameFieldRows, gameFieldColumns), actio
 
 export default class TicTacReact extends Component {
   render() {
-    return ( <GameBoard
-               store={createStore(combineReducers({field: reducer}), devTools())}
-             />)
+    return (
+      <Provider>
+        <GameBoard
+          store={createStore(combineReducers({field: reducer}), devTools())}
+        />
+      </Provider>
+    )
   }
 }
 
