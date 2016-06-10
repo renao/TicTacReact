@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
+import React, { Component } from 'react'
+import { StyleSheet, View, TouchableOpacity, Text } from 'react-native'
+import * as GameActions from './../../game/GameActions'
 
 export default class Square extends Component {
 
@@ -15,10 +16,14 @@ export default class Square extends Component {
     return (this.props.row == 0) ? styles.playerA : styles.playerB;
   }
 
+  label() {
+    return (this.props.label) ? this.props.label : 'default';
+  }
+
   render() {
     return (
-      <TouchableOpacity style={ this.determineStyle() } onPress={ () => this.props.onGameMoveHandle(this.props.column, this.props.row) }>
-        <Text style={styles.label}>SquareLabel</Text>
+      <TouchableOpacity style={ this.determineStyle() } onPress={ () => GameActions.selectField(this.props.column, this.props.row) }>
+        <Text style={styles.label}>{this.label()}</Text>
       </TouchableOpacity>
     );
   }

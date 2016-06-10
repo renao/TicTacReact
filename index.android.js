@@ -16,7 +16,7 @@ function occupyField(state, action) {
 }
 
 const actionMap = {
-  'OCCUPY_FIELD': occupyField,
+  'SELECT_FIELD': occupyField,
 }
 
 const gameFieldRows = 3;

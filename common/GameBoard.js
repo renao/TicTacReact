@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 
 import Column from './GameBoard/Column'
+import * as GameActions from './../game/GameActions'
 
 export default class GameBoard extends Component {
 
@@ -38,7 +39,7 @@ export default class GameBoard extends Component {
   }
 
   _handleGameMove(x, y) {
-    this.props.store.dispatch({ type: 'OCCUPY_FIELD', rowId: y, columnId: x });
+    this.props.store.dispatch(GameActions.selectField(x, y));
   }
 }
 
