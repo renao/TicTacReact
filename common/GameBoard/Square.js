@@ -8,25 +8,35 @@ export default class Square extends Component {
     super(props);
   }
 
-  update() {
-
-  }
 
   determineStyle() {
-    return (this.props.row == 0) ? styles.playerA : styles.playerB;
+    return styles.empty;
+    // return (this.props.row == 0) ? styles.playerA : styles.playerB;
   }
 
   label() {
-    return (this.props.label) ? this.props.label : 'default';
+    const { store } = this.context;
+    let fieldLabel = store.getState().field[this.props.column][this.props.row];
+    return (fieldLabel != null) ? fieldLabel : "";
   }
 
   render() {
+    const { store } = this.context;
+    console.log(store);
     return (
-      <TouchableOpacity style={ this.determineStyle() } onPress={ () => GameActions.selectField(this.props.column, this.props.row) }>
+      <TouchableOpacity style={ this.determineStyle() } onPress={
+        () => {
+          store.dispatch(GameActions.selectField(this.props.column, this.props.row));
+        }
+      }>
         <Text style={styles.label}>{this.label()}</Text>
       </TouchableOpacity>
     );
   }
+}
+
+Square.contextTypes = {
+  store: React.PropTypes.object
 }
 
 const styles = StyleSheet.create({

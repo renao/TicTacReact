@@ -13,7 +13,6 @@ export default class Column extends Component {
                             key={props.column + ' ' + row}
                             column={props.column}
                             row={row}
-                            onGameMoveHandle={props.onGameMoveHandle}
                           />;
     }
   }

@@ -5,6 +5,7 @@ import {
   Text,
 } from 'react-native';
 
+import { Provider } from 'react-redux';
 import Column from './GameBoard/Column'
 import * as GameActions from './../game/GameActions'
 
@@ -21,7 +22,6 @@ export default class GameBoard extends Component {
                               key={col}
                               column={col}
                               rows={rows}
-                              onGameMoveHandle={this._handleGameMove.bind(this)}
                             />;
     }
 
@@ -32,15 +32,17 @@ export default class GameBoard extends Component {
 
   render() {
     return (
-      <View style={styles.gameBoard}>
-        {this.state.field}
-      </View>
+      <Provider store={this.props.store}>
+        <View style={styles.gameBoard}>
+          {this.state.field}
+        </View>
+      </Provider>
     );
   }
+}
 
-  _handleGameMove(x, y) {
-    this.props.store.dispatch(GameActions.selectField(x, y));
-  }
+GameBoard.propTypes = {
+  store: React.PropTypes.object.isRequired
 }
 
 const styles = StyleSheet.create({
