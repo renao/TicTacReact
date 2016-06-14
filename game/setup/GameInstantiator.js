@@ -1,11 +1,13 @@
-  emptyFieldDescriptor = null;
+import { gameConfig } from './gameConfig';
 
-export function createGameField(rows, columns) {
+emptyFieldDescriptor = null;
+
+export function createGameField() {
   let gameField = new Array();
 
-  for (let columnId = 0; columnId < columns; columnId++) {
+  for (let columnId = 0; columnId < gameConfig.columns; columnId++) {
     gameField[columnId] = new Array();
-    for(let rowId = 0; rowId < rows; rowId++) {
+    for(let rowId = 0; rowId < gameConfig.rows; rowId++) {
       gameField[columnId][rowId] = emptyFieldDescriptor;
     }
   }
