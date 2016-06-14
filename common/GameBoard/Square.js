@@ -8,6 +8,17 @@ export default class Square extends Component {
     super(props);
   }
 
+/* TODO: Replace this by redux connect */
+  componentDidMount() {
+    const { store } = this.context;
+    this.unsubscribe = store.subscribe(() => {
+      this.forceUpdate();
+    });
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
 
   determineStyle() {
     return styles.empty;
@@ -22,7 +33,6 @@ export default class Square extends Component {
 
   render() {
     const { store } = this.context;
-    console.log(store);
     return (
       <TouchableOpacity style={ this.determineStyle() } onPress={
         () => {
