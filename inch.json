@@ -1,0 +1,8 @@
+{
+  "files": {
+    "included": [
+      "common/**/*.js"
+      "game/**/*.js"
+    ]
+  }
+}
